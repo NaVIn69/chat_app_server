@@ -109,7 +109,7 @@ io.on("connection",(socket)=>{
     // console.log(userSocketIDs);
     // currently active all the user
 
-  console.log("a user connected ",socket.id);
+  // console.log("a user connected ",socket.id);
 
 // sare data comes from the front end 
 // this sets up an event listener on the socket for the NEW_MESSAGE event.

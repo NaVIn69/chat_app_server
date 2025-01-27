@@ -109,7 +109,7 @@ const searchUser = TryCatch(async (req, res) => {
     name:{$regex:name ,$options:"i"},
   });
 
-  console.log("allUsersExceptMeAndFriends FROM USER.JS SEARCH USER",allUsersExceptMeAndFriends);
+  // console.log("allUsersExceptMeAndFriends FROM USER.JS SEARCH USER",allUsersExceptMeAndFriends);
 
   // modifying all the response
   const users = allUsersExceptMeAndFriends.map(({ _id, name, avatar }) => ({
@@ -240,7 +240,8 @@ const getMyFriends = TryCatch(async (req, res) => {
     members: req.user,
     groupChat: false,
   }).populate("members", "name avatar");
-  console.log("GET MY FRIENDS CHAT",chats);
+
+  // console.log("GET MY FRIENDS CHAT",chats);
 
   const friends = chats.map(({ members }) => {
     const otherUser = getOtherMember(members, req.user);

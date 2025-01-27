@@ -12,7 +12,7 @@ const newGroupChat = TryCatch(async (req, res, next) => {
   // here name->group ka name
   // members -> is the array which store the all member _id(mongodb object id) of group chat of that name
   const { name, members } = req.body;
-  console.log("members from new Group chat",members)
+  // console.log("members from new Group chat",members)
 
   if (members.length <2) {
     return next(new ErrorHandler("Group chat must have at least 3 members ", 400));

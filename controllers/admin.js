@@ -188,7 +188,7 @@ const getDashboardStats = TryCatch(async (req, res) => {
 
     messages[6 - index]++;
   });
-console.log(groupsCount,usersCount,messagesCount);
+// console.log(groupsCount,usersCount,messagesCount);
   const stats = {
     groupsCount,
     usersCount,
