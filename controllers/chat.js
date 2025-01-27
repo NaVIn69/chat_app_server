@@ -12,7 +12,7 @@ const newGroupChat = TryCatch(async (req, res, next) => {
   // here name->group ka name
   // members -> is the array which store the all member _id(mongodb object id) of group chat of that name
   const { name, members } = req.body;
-  // console.log("members from new Group chat",members)
+  console.log("members from new Group chat",members)
 
   if (members.length <2) {
     return next(new ErrorHandler("Group chat must have at least 3 members ", 400));
@@ -44,13 +44,13 @@ const getMyChats = TryCatch(async (req, res, next) => {
   // console.log("getMyChats",chats);
   //  console.log("getMychats',chats);
   // by populate , we get all the detain of members like ("member","name","avatar")
-  // console.log("chat.js server getmy chats",chats)
+  console.log("chat.js server getmy chats",chats)
 
   // chats store the all the group chats
   const transformedChats = chats.map(({ _id, name, members, groupChat }) => {
-    // console.log("members",members);
+    console.log("members",members);
     const otherMember = getOtherMember(members, req.user);
-    // console.log("chat.js server",_id,otherMember)
+    console.log("chat.js server",_id,otherMember)
    
 
     return {
@@ -68,7 +68,7 @@ const getMyChats = TryCatch(async (req, res, next) => {
       }, []),
     };
   });
-  // console.log("chat.js server",transformedChats)
+  console.log("chat.js server",transformedChats)
   
 
   return res.status(201).json({
@@ -84,7 +84,7 @@ const getMyGroups = TryCatch(async (req, res, next) => {
     groupChat: true,
     creator: req.user,
   }).populate("members", "name avatar");
-  // console.log(chats);
+  console.log(chats);
 
   const groups = chats.map(({ members, _id, groupChat, name }) => ({
     _id,
@@ -324,7 +324,7 @@ const getChatDetails = TryCatch(async (req, res, next) => {
     .populate("members", "name avatar")
     .lean();
     
-    // console.log(chat)
+    console.log("chatdetails with populated",chat)
 
     // BY doing the  -> .lean() krne se chat is not mongobd id then we can process something or we can change something on it
     if (!chat) return next(new ErrorHandler("Chat not found in db", 404));
@@ -336,7 +336,7 @@ const getChatDetails = TryCatch(async (req, res, next) => {
       avatar: avatar.url,
     }));
     // here chat.members becomes the javascript object
-    // console.log("getchatdetails with without popultae ",chat);
+    console.log("getchatdetails with without popultae ",chat);
     return res.status(200).json({
       success: true,
       chat,

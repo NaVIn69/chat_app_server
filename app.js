@@ -109,7 +109,7 @@ io.on("connection",(socket)=>{
     // console.log(userSocketIDs);
     // currently active all the user
 
-  // console.log("a user connected ",socket.id);
+  console.log("a user connected ",socket.id);
 
 // sare data comes from the front end 
 // this sets up an event listener on the socket for the NEW_MESSAGE event.
@@ -139,7 +139,7 @@ io.on("connection",(socket)=>{
         sender:user._id,
         chat:chatId,
     }
-    // console.log("members",members);
+    console.log("members",members);
   // here users is the member , from here we have the socket 
   // console.log("members",members);
   const membersSocket =getSockets(members);
